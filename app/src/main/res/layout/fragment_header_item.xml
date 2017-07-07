@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+
+    <FrameLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#cbcbcb"></FrameLayout>
+    <LinearLayout
+        android:layout_below="@+id/line1"
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/camara"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/camara"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="70dp"
+            android:src="@drawable/line"/>
+
+
+        <ImageView
+            android:id="@+id/mystory"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/mystory"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/line2"
+        android:layout_below="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:background="#cbcbcb"></FrameLayout>
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_below="@+id/line2"
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kakao5"/>
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="준영님, 업데이트를 공유하시겠어요?"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+</layout>
