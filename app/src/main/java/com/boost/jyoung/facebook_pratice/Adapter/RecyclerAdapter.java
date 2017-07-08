@@ -83,7 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
             final MainItem mainItem = mainItems.get(position-1);
             final BaseViewHolder baseViewHolder = (BaseViewHolder)holder;
 
-            setColorInPartitial(mainItem.main_header_name.toString(), "님 외 "+mainItem.main_header_cnt+"명이 여기에 댓글을 남겼습니다.", "#000000", baseViewHolder.main_header);
+            baseViewHolder.main_header.setText(mainItem.main_header_name+"님 외 "+mainItem.main_header_cnt+"명이 여기에 댓글을 남겼습니다.");
             baseViewHolder.profile.setBackgroundResource(mainItem.profile);
             baseViewHolder.user_name.setText(mainItem.user_name);
             baseViewHolder.other_name.setText(mainItem.other_name);

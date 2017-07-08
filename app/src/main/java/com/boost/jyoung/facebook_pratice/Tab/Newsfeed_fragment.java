@@ -41,7 +41,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.rcv.setLayoutManager(linearLayoutManager);
-        
+
 
         binding.refreshlayout.setOnRefreshListener(this);
 
