@@ -17,16 +17,11 @@ import com.boost.jyoung.facebook_pratice.databinding.FragmentHeaderItemBinding;
  */
 
 public class HeaderViewHolder extends RecyclerView.ViewHolder {
-    public ImageView camara;
-    public ImageView mystory;
-    public ImageView profile;
+    public FragmentHeaderItemBinding binding;
 
     public HeaderViewHolder(View view) {
         super(view);
-
-        camara = (ImageView)view.findViewById(R.id.camara);
-        mystory = (ImageView)view.findViewById(R.id.mystory);
-        profile = (ImageView)view.findViewById(R.id.profile);
+        binding = DataBindingUtil.bind(view);
     }
 
 }

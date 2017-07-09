@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="base"
+            type="com.boost.jyoung.facebook_pratice.Model.MainItem" />
+    </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -13,19 +20,56 @@
             android:layout_height="13dp"
             android:background="#cbcbcb"></FrameLayout>
 
-        <TextView
-            android:id="@+id/main_header"
+        <LinearLayout
+            android:id="@+id/header_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line1"
             android:layout_margin="10dp"
-            android:text="" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/main_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{base.main_header_name}"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="님 " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="외 "
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(base.main_header_cnt)}"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="명"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이 여기에 댓글을 남겼습니다." />
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/main_header"
+            android:layout_below="@id/header_layout"
             android:background="#cbcbcb"></FrameLayout>
 
 
@@ -33,15 +77,15 @@
             android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line2"
-            android:layout_margin="5dp"
+            android:layout_below="@+id/line2"
+            android:layout_centerHorizontal="true"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/profile"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                 />
+                app:setImg="@{base.profile}" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -53,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
-                    android:text="김준영"
+                    android:text="@{base.user_name}"
                     android:textColor="#000" />
 
                 <ImageView
@@ -70,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/arrow"
-                    android:text="boostcamp"
+                    android:text="@{base.other_name}"
                     android:textColor="#000" />
 
                 <TextView
@@ -78,8 +122,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/user_name"
-                    android:text="9시간 전 ·"
+                    android:text="@{String.valueOf(base.time)}"
                     android:textSize="12sp" />
+
+                <TextView
+                    android:layout_below="@+id/user_name"
+                    android:layout_toRightOf="@+id/time_text"
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시간 전 ·"
+                    android:textSize="12sp" />
+
 
                 <ImageView
                     android:layout_width="14dp"
@@ -87,7 +141,7 @@
                     android:layout_below="@+id/user_name"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="1dp"
-                    android:layout_toRightOf="@+id/time_text"
+                    android:layout_toRightOf="@+id/time"
                     android:src="@drawable/friend_unselected" />
 
             </RelativeLayout>
@@ -102,18 +156,18 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:text="내용이들어갑니당"
+            android:text="@{base.content}"
             android:textColor="#f2000000" />
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:id="@+id/content_img"
             android:layout_width="match_parent"
             android:layout_height="270dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/content_text"
-            android:src="@drawable/boostcamp" />
+            android:layout_marginTop="10dp"
+            app:setImg="@{base.main_img}" />
 
         <RelativeLayout
             android:id="@+id/cnt"
@@ -121,31 +175,90 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_img">
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"></RelativeLayout>
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="17dp"
-                    android:src="@drawable/icon" />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="60dp"
+                android:layout_height="17dp"
+                android:src="@drawable/icon" />
 
-                <TextView
-                    android:id="@+id/like_cnt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="boostcamp님 외 15명" />
+            <TextView
+                android:id="@+id/like_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/icon"
+                android:text="@{base.other_name}" />
 
-                <TextView
-                    android:id="@+id/comment_cnt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:text="댓글 77개 공유 77회" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/like_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/like_name"
+                android:text="님 외 " />
+
+            <TextView
+                android:id="@+id/like_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/like_name2"
+                android:text="@{String.valueOf(base.like_cnt)}" />
+
+            <TextView
+                android:id="@+id/like_cnt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/like_cnt"
+                android:text="명" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/share"
+                android:layout_toLeftOf="@+id/share_cnt"
+                android:text=" 공유 "/>
+
+            <TextView
+                android:id="@+id/share_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/share_cnt2"
+                app:setText="@{String.valueOf(base.share_cnt)}" />
+
+            <TextView
+                android:id="@+id/share_cnt2"
+                android:text="회"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/comment"
+                android:layout_toLeftOf="@+id/comment_cnt"
+                android:text="댓글 "/>
+
+            <TextView
+                android:id="@+id/comment_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/comment_cnt2"
+                app:setText="@{String.valueOf(base.comment_cnt)}" />
+
+            <TextView
+                android:id="@+id/comment_cnt2"
+                android:text="개"
+                android:layout_toLeftOf="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
 
         <FrameLayout
@@ -157,28 +270,28 @@
             android:background="#cbcbcb"></FrameLayout>
 
         <RelativeLayout
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line3">
+            android:layout_below="@+id/line3"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/like_img"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:src="@drawable/like_selector"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/like_selector" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/click_like"
-                android:layout_alignParentLeft="true"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
-                android:src="@drawable/click_like2"/>
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/click_like2"
+                android:visibility="gone" />
 
 
             <ImageView

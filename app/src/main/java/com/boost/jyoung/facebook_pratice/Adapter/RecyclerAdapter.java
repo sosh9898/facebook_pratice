@@ -58,20 +58,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof HeaderViewHolder){
             HeaderViewHolder headerViewHolder = (HeaderViewHolder)holder;
-            headerViewHolder.camara.setOnClickListener(new View.OnClickListener() {
+            headerViewHolder.binding.camara.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context, "camara click!!", Toast.LENGTH_SHORT).show();
                 }
             });
-            headerViewHolder.mystory.setOnClickListener(new View.OnClickListener() {
+            headerViewHolder.binding.mystory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context, "mystory click!!", Toast.LENGTH_SHORT).show();
 
                 }
             });
-            headerViewHolder.profile.setOnClickListener(new View.OnClickListener() {
+            headerViewHolder.binding.profile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context, "profile click!!", Toast.LENGTH_SHORT).show();
@@ -82,39 +82,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         else if(holder instanceof BaseViewHolder){
             final MainItem mainItem = mainItems.get(position-1);
             final BaseViewHolder baseViewHolder = (BaseViewHolder)holder;
+            baseViewHolder.binding.setBase(mainItem);
 
-            baseViewHolder.main_header.setText(mainItem.main_header_name+"님 외 "+mainItem.main_header_cnt+"명이 여기에 댓글을 남겼습니다.");
-            baseViewHolder.profile.setBackgroundResource(mainItem.profile);
-            baseViewHolder.user_name.setText(mainItem.user_name);
-            baseViewHolder.other_name.setText(mainItem.other_name);
-            baseViewHolder.main_content.setText(mainItem.content);
-            baseViewHolder.main_img.setBackgroundResource(mainItem.main_img);
-            baseViewHolder.like_cnt.setText(mainItem.other_name+"님 외 "+mainItem.like_cnt+"명");
-            baseViewHolder.time.setText(mainItem.time+"시간");
-            baseViewHolder.comment_cnt.setText("댓글 "+mainItem.comment_cnt+"개 공유 "+mainItem.share_cnt+"회");
-
-            baseViewHolder.like_img.setOnClickListener(new View.OnClickListener() {
+            baseViewHolder.binding.likeImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mainItem.like_cnt++;
-                    baseViewHolder.like_img.setVisibility(View.INVISIBLE);
-                    baseViewHolder.click_like_img.setVisibility(View.VISIBLE);
+                    baseViewHolder.binding.likeImg.setVisibility(View.INVISIBLE);
+                    baseViewHolder.binding.clickLike.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "like!!", Toast.LENGTH_SHORT).show();
                     notifyDataSetChanged();
 
                 }
             });
-            baseViewHolder.click_like_img.setOnClickListener(new View.OnClickListener() {
+            baseViewHolder.binding.clickLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mainItem.like_cnt--;
-                    baseViewHolder.like_img.setVisibility(View.VISIBLE);
-                    baseViewHolder.click_like_img.setVisibility(View.GONE);
+                    baseViewHolder.binding.likeImg.setVisibility(View.VISIBLE);
+                    baseViewHolder.binding.clickLike.setVisibility(View.GONE);
                     Toast.makeText(context, "like cancel;;", Toast.LENGTH_SHORT).show();
                     notifyDataSetChanged();
                 }
             });
-            baseViewHolder.comment_img.setOnClickListener(new View.OnClickListener() {
+            baseViewHolder.binding.commentImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mainItem.comment_cnt++;
@@ -122,7 +113,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
                     notifyDataSetChanged();
                 }
             });
-            baseViewHolder.share_img.setOnClickListener(new View.OnClickListener() {
+            baseViewHolder.binding.shareImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mainItem.share_cnt++;
@@ -151,6 +142,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         builder.setSpan(new ForegroundColorSpan(Color.parseColor(color)), 0, pre_string.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.append(builder);
         return textView;
+    }
+
+    private void click_like(View view){
+
     }
 
 }
