@@ -72,23 +72,52 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         return listItems != null ? listItems.size() : 0;
     }
 
+
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+//      baseViewHolder.binding.likeImg.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "좋아요 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+//            baseViewHolder.binding.commentImg.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "댓글 달기 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+//            baseViewHolder.binding.shareImg.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "공유하기 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+
+//    headerViewHolder.binding.profile.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "프로필 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+//            headerViewHolder.binding.mystory.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "마이스토리 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+//            headerViewHolder.binding.camara.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Toast.makeText(context, "카메라 클릭", Toast.LENGTH_SHORT).show();
+//        }
+//    });
+
 }
 
-//            headerViewHolder.binding.profile.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(context, "프로필 클릭", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            headerViewHolder.binding.mystory.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(context, "마이스토리 클릭", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            headerViewHolder.binding.camara.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(context, "카메라 클릭", Toast.LENGTH_SHORT).show();
-//                }
-//            });
