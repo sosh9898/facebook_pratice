@@ -25,9 +25,9 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new Newsfeed_fragment();
+                return Newsfeed_fragment.newInstance();
             default:
-                return new Remainder_fragment();
+                return Remainder_fragment.newInstance();
         }
     }
 

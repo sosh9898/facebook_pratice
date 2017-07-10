@@ -1,15 +1,11 @@
 package com.boost.jyoung.facebook_pratice.ViewHolder;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.boost.jyoung.facebook_pratice.BR;
-import com.boost.jyoung.facebook_pratice.Model.MainItem;
-import com.boost.jyoung.facebook_pratice.R;
 import com.boost.jyoung.facebook_pratice.databinding.FragmentHeaderItemBinding;
 
 /**
@@ -23,6 +19,5 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         super(view);
         binding = DataBindingUtil.bind(view);
     }
-
 }
 

@@ -17,6 +17,11 @@ public class Remainder_fragment extends Fragment {
     public Remainder_fragment() {
     }
 
+    public static Remainder_fragment newInstance(){
+        Remainder_fragment fragment = new Remainder_fragment();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

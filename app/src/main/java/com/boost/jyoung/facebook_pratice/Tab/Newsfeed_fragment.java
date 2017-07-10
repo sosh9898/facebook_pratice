@@ -6,30 +6,39 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter;
-import com.boost.jyoung.facebook_pratice.Model.MainItem;
+import com.boost.jyoung.facebook_pratice.Model.ListItem;
 import com.boost.jyoung.facebook_pratice.R;
 import com.boost.jyoung.facebook_pratice.databinding.FragmentMainBinding;
-
 import java.util.ArrayList;
+
+import static com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter.TYPE_BASE;
+import static com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter.TYPE_HEADER;
 
 /**
  * Created by jyoung on 2017. 7. 7..
  */
 
 public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    ArrayList<MainItem> mainItems;
+    ArrayList<ListItem> listItems;
     LinearLayoutManager linearLayoutManager;
     RecyclerAdapter recyclerAdapter;
     FragmentMainBinding binding;
 
 
+
     public Newsfeed_fragment() {
+    }
+
+    public static Newsfeed_fragment newInstance(){
+        Newsfeed_fragment fragment = new Newsfeed_fragment();
+        return fragment;
     }
 
     @Nullable
@@ -37,17 +46,19 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         View view = binding.getRoot();
+        return view;
+    }
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.rcv.setLayoutManager(linearLayoutManager);
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        binding.rcv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.rcv.setHasFixedSize(true);
 
         binding.refreshlayout.setOnRefreshListener(this);
 
-
-        mainItems = new ArrayList<MainItem>();
-        mainItems.add(new MainItem("문경현",
+        listItems = new ArrayList<ListItem>();
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_HEADER));
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"문경현",
                 52,
                 R.drawable.kakao5,
                 "김준영",
@@ -56,7 +67,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 "안녕하세요! 부스트캠프 2기 안드로이드 b조 김준영입니다.",
                 R.drawable.boostcamp,
                 27,21,42));
-        mainItems.add(new MainItem("정순호",
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"정순호",
                 66,
                 R.drawable.kakao2,
                 "문경현",
@@ -65,7 +76,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 "안녕하세요! 부스트캠프 2기 안드로이드 b조 문경현입니다.",
                 R.drawable.boostcamp,
                 47,24,15));
-        mainItems.add(new MainItem("최진주",
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"최진주",
                 42,
                 R.drawable.kakao4,
                 "정순호",
@@ -74,7 +85,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 "안녕하세요! 부스트캠프 2기 안드로이드 b조 정순호입니다.",
                 R.drawable.boostcamp,
                 57,41,82));
-        mainItems.add(new MainItem("나영열",
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"나영열",
                 34,
                 R.drawable.kakao1,
                 "최진주",
@@ -83,7 +94,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 "안녕하세요! 부스트캠프 2기 안드로이드 b조 최진주입니다.",
                 R.drawable.boostcamp,
                 87,21,42));
-        mainItems.add(new MainItem("김준영",
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"김준영",
                 11,
                 R.drawable.kakao6,
                 "이지건",
@@ -92,7 +103,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 "안녕하세요! 부스트캠프 2기 안드로이드 b조 이지건입니다.",
                 R.drawable.boostcamp,
                 87,21,42));
-        mainItems.add(new MainItem("이지건",
+        listItems.add(new ListItem(RecyclerAdapter.TYPE_BASE,"이지건",
                 8,
                 R.drawable.kakao4,
                 "나영열",
@@ -102,11 +113,9 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 R.drawable.boostcamp,
                 87,21,42));
 
-
-        recyclerAdapter = new RecyclerAdapter(mainItems, getContext());
+        recyclerAdapter = new RecyclerAdapter(listItems, getContext());
         binding.rcv.setAdapter(recyclerAdapter);
 
-        return view;
     }
 
     @Override
@@ -114,6 +123,4 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
         binding.refreshlayout.setRefreshing(false);
         Toast.makeText(getContext(), "reload!", Toast.LENGTH_SHORT).show();
     }
-
-
 }
