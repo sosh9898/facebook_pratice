@@ -6,6 +6,10 @@
             name="base"
             type="com.boost.jyoung.facebook_pratice.Model.ListItem" />
 
+        <variable
+            name="clickbase"
+            type="com.boost.jyoung.facebook_pratice.Handler.MyHandler"/>
+
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -277,6 +281,7 @@
             android:layout_marginTop="5dp">
 
             <ImageView
+                android:onClick="@{clickbase::LikeClick}"
                 android:id="@+id/like_img"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -287,6 +292,7 @@
 
 
             <ImageView
+                android:onClick="@{clickbase::CommentClick}"
                 android:id="@+id/comment_img"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -294,6 +300,7 @@
                 android:src="@drawable/comment_img" />
 
             <ImageView
+                android:onClick="@{clickbase::ShareClick}"
                 android:id="@+id/share_img"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

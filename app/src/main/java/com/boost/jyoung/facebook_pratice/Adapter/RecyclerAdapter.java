@@ -2,11 +2,9 @@ package com.boost.jyoung.facebook_pratice.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.boost.jyoung.facebook_pratice.Handler.MyHandler;
 import com.boost.jyoung.facebook_pratice.Model.ListItem;
@@ -28,10 +26,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
     ArrayList<ListItem> listItems;
     Context context;
+    ItemClickListener itemClickListener;
 
-    public RecyclerAdapter(ArrayList<ListItem> listItems, Context context) {
+    public static interface ItemClickListener {
+        void Clicked(String msg);
+    }
+
+    public RecyclerAdapter(ArrayList<ListItem> listItems, Context context, ItemClickListener itemClickListener) {
         this.listItems = listItems;
         this.context = context;
+        this.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -53,12 +57,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeaderViewHolder) {
-            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-
+            ((HeaderViewHolder)holder).binding.setClickheader(new MyHandler(itemClickListener));
         } else if (holder instanceof BaseViewHolder) {
             ListItem listItem = listItems.get(position);
-            BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+            BaseViewHolder baseViewHolder = (BaseViewHolder)holder;
             baseViewHolder.binding.setBase(listItem);
+            baseViewHolder.binding.setClickbase(new MyHandler(itemClickListener));
         }
     }
 

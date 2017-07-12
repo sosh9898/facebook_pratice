@@ -1,10 +1,8 @@
 package com.boost.jyoung.facebook_pratice.ViewHolder;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.boost.jyoung.facebook_pratice.databinding.FragmentHeaderItemBinding;
 

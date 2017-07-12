@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,8 @@ import com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter;
 import com.boost.jyoung.facebook_pratice.Model.ListItem;
 import com.boost.jyoung.facebook_pratice.R;
 import com.boost.jyoung.facebook_pratice.databinding.FragmentMainBinding;
-import java.util.ArrayList;
 
-import static com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter.TYPE_BASE;
-import static com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter.TYPE_HEADER;
+import java.util.ArrayList;
 
 /**
  * Created by jyoung on 2017. 7. 7..
@@ -27,7 +24,6 @@ import static com.boost.jyoung.facebook_pratice.Adapter.RecyclerAdapter.TYPE_HEA
 
 public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     ArrayList<ListItem> listItems;
-    LinearLayoutManager linearLayoutManager;
     RecyclerAdapter recyclerAdapter;
     FragmentMainBinding binding;
 
@@ -113,7 +109,7 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
                 R.drawable.boostcamp,
                 87,21,42));
 
-        recyclerAdapter = new RecyclerAdapter(listItems, getContext());
+        recyclerAdapter = new RecyclerAdapter(listItems, getContext(), itemClickListener);
         binding.rcv.setAdapter(recyclerAdapter);
 
     }
@@ -123,4 +119,11 @@ public class Newsfeed_fragment extends Fragment implements SwipeRefreshLayout.On
         binding.refreshlayout.setRefreshing(false);
         Toast.makeText(getContext(), "reload!", Toast.LENGTH_SHORT).show();
     }
+
+    RecyclerAdapter.ItemClickListener itemClickListener = new RecyclerAdapter.ItemClickListener() {
+        @Override
+        public void Clicked(String msg) {
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
